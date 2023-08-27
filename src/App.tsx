@@ -1,10 +1,13 @@
 import { Homepage } from "./pages/Homepage";
+import { StyledEngineProvider } from "@mui/material/styles";
 
 export const App = () => {
   return (
-    <div>
-      <Homepage />
-    </div>
+    <StyledEngineProvider injectFirst>
+      <div>
+        <Homepage />
+      </div>
+    </StyledEngineProvider>
   );
 };
 

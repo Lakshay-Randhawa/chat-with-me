@@ -4,9 +4,7 @@ import { StyledEngineProvider } from "@mui/material/styles";
 export const App = () => {
   return (
     <StyledEngineProvider injectFirst>
-      <div>
-        <Homepage />
-      </div>
+      <Homepage />
     </StyledEngineProvider>
   );
 };

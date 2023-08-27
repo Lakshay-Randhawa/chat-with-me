@@ -1,5 +1,6 @@
 import { Navbar } from "../components/Navbar";
 import HomepageImage from "../assets/homepage.webp";
+import LoginForm from "../components/LoginForm";
 
 export const Homepage = () => {
   return (
@@ -9,7 +10,9 @@ export const Homepage = () => {
         <div className="self-auto basis-9/12">
           <img src={HomepageImage} alt="Homepage Image" />
         </div>
-        <div className="basis-3/12">Login Form</div>
+        <div className="basis-3/12">
+          <LoginForm />
+        </div>
       </div>
     </div>
   );

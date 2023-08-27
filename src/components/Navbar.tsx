@@ -1,5 +1,6 @@
 import { AppBar, Toolbar, Typography } from "@mui/material";
 import QuestionAnswerIcon from "@mui/icons-material/QuestionAnswer";
+import { Link } from "react-router-dom";
 
 export const Navbar = () => {
   return (
@@ -8,9 +9,9 @@ export const Navbar = () => {
         <Toolbar className="flex">
           <div className="flex gap-3">
             <Typography variant="h5">Let's Chat</Typography>
-            <div>
+            <Link to="/">
               <QuestionAnswerIcon fontSize="large" />
-            </div>
+            </Link>
           </div>
         </Toolbar>
       </AppBar>

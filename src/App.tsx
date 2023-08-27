@@ -1,6 +1,6 @@
+import { StyledEngineProvider } from "@mui/material/styles";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Homepage } from "./pages/Homepage";
-import { StyledEngineProvider } from "@mui/material/styles";
 
 export const App = () => {
   return (

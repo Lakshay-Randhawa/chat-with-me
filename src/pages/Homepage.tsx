@@ -1,3 +1,10 @@
+import { Navbar } from "../components/Navbar";
+
 export const Homepage = () => {
-  return <div className="text-red-400">Homepage</div>;
+  return (
+    <div>
+      <Navbar />
+      <div className="flex">Image Login Form</div>
+    </div>
+  );
 };

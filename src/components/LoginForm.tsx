@@ -1,11 +1,17 @@
-import { Button, TextField, Typography } from "@mui/material";
-import { Link } from "react-router-dom";
+import { TextField, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { HowerButton as Button } from "../HOC/Button";
+
 // import { toast, ToastContainer } from "react-toastify";
 // import "react-toastify/dist/ReactToastify.css";
 
-export const LoginForm = () => {
+type Props = {
+  toggleForm: () => void;
+};
+
+export const LoginForm = (props: Props) => {
   const navigate = useNavigate();
+  const { toggleForm } = props;
 
   return (
     <div className=" border-gray-600 rounded-lg flex flex-col gap-8 p-12 w-96 h-fit shadow-2xl ">
@@ -36,19 +42,14 @@ export const LoginForm = () => {
         //   onReset={formik.handleReset}
         fullWidth
       />
-      <Button
-        className="text-black hover:text-white"
-        type="submit"
-        variant="contained"
-        size="small"
-      >
+      <Button>
         <Typography>Login</Typography>
       </Button>
       <Typography>
         Don't have an account ?{" "}
-        <Link className="hover:text-blue-600 hover:underline" to={"/register"}>
-          Sign Up
-        </Link>
+        <Typography className="hover:text-blue-600 hover:underline">
+          <a onClick={toggleForm}>Sign Up</a>
+        </Typography>
       </Typography>
       {/* </form> */}
     </div>

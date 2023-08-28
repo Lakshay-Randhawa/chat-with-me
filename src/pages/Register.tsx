@@ -22,8 +22,6 @@ export const Register = (props: Props) => {
   const { toggleForm } = props;
   const [passwordVisible, setPasswordVisible] = useState(false);
 
-  const navigate = useNavigate();
-
   //   const formik = useFormik({
   //     initialValues: {
   //       name: "",
@@ -53,7 +51,7 @@ export const Register = (props: Props) => {
 
   return (
     <>
-      <div className="border border-gray-400 rounded-lg mx-auto flex flex-col gap-8 p-12 w-96 h-auto">
+      <div className="border-gray-600 rounded-lg mx-auto flex flex-col gap-8 p-12 w-96 h-fit shadow-2xl">
         <div onClick={toggleForm}>
           <ArrowBackIosIcon />
         </div>
@@ -108,13 +106,13 @@ export const Register = (props: Props) => {
         </FormControl>
         {/* Confirm Password */}
         <FormControl>
-          <InputLabel htmlFor="confirmPassword">Password</InputLabel>
+          <InputLabel htmlFor="confirmPassword">Confirm Password</InputLabel>
           <OutlinedInput
             id="confirmPassword"
             name="confirmPassword"
-            label="Password"
+            label="Confirm Password"
             type={passwordVisible ? "text" : "password"}
-            placeholder="Enter password"
+            placeholder="Confirm password"
             // value={formik.values.confirmPassword}
             // onChange={formik.handleChange}
             // onReset={formik.handleReset}

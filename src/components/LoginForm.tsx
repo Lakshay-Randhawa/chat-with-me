@@ -1,6 +1,6 @@
 import { TextField, Typography } from "@mui/material";
-import { useNavigate } from "react-router-dom";
 import { HowerButton as Button } from "../HOC/Button";
+import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
 
 // import { toast, ToastContainer } from "react-toastify";
 // import "react-toastify/dist/ReactToastify.css";
@@ -10,14 +10,27 @@ type Props = {
 };
 
 export const LoginForm = (props: Props) => {
-  const navigate = useNavigate();
   const { toggleForm } = props;
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
 
+  const onSubmit: SubmitHandler<FieldValues> = (data) => console.log(data);
   return (
-    <div className=" border-gray-600 rounded-lg flex flex-col gap-8 p-12 w-96 h-fit shadow-2xl ">
-      {/* <form onSubmit={formik.handleSubmit} style={formStyle}> */}
+    <form
+      className=" border-gray-600 rounded-lg flex flex-col gap-8 p-12 w-96 h-fit shadow-2xl"
+      onSubmit={handleSubmit(onSubmit)}
+    >
       <Typography variant="h4">Sign In</Typography>
       <TextField
+        {...register("email", { required: true })}
         autoFocus
         margin="dense"
         id="email"
@@ -25,12 +38,10 @@ export const LoginForm = (props: Props) => {
         label="Email Address"
         type="email"
         variant="standard"
-        //   value={formik.values.email}
-        //   onChange={formik.handleChange}
-        //   onReset={formik.handleReset}
         fullWidth
       />
       <TextField
+        {...register("password", { required: true })}
         margin="dense"
         id="password"
         name="password"
@@ -45,13 +56,12 @@ export const LoginForm = (props: Props) => {
       <Button>
         <Typography>Login</Typography>
       </Button>
-      <Typography>
-        Don't have an account ?{" "}
-        <Typography className="hover:text-blue-600 hover:underline">
+      <div className="flex">
+        <Typography>Don't have an account? </Typography>
+        <Typography className="hover:text-blue-600 hover:underline cursor-pointer">
           <a onClick={toggleForm}>Sign Up</a>
         </Typography>
-      </Typography>
-      {/* </form> */}
-    </div>
+      </div>
+    </form>
   );
 };

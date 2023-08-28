@@ -10,8 +10,9 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 
+import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
+
 import { IconButton, InputAdornment } from "@mui/material";
-import { useNavigate } from "react-router-dom";
 import { HowerButton as Button } from "../HOC/Button";
 
 type Props = {
@@ -20,77 +21,63 @@ type Props = {
 
 export const Register = (props: Props) => {
   const { toggleForm } = props;
-  const [passwordVisible, setPasswordVisible] = useState(false);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      name: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+    },
+  });
 
-  //   const formik = useFormik({
-  //     initialValues: {
-  //       name: "",
-  //       email: "",
-  //       password: "",
-  //       confirmPassword: "",
-  //     },
-  //     onSubmit: async (values) => {
-  //       try {
-  //         const userData = await axios({
-  //           method: "post",
-  //           url: "http://localhost:5001/api/users/register",
-  //           data: {
-  //             name: values.name,
-  //             email: values.email,
-  //             password: values.password,
-  //           },
-  //         });
-  //         navigate("/chat");
-  //       } catch (error) {}
-  //     },
-  //   });
+  const [passwordVisible, setPasswordVisible] = useState(false);
 
   const handlePasswordShow = () => {
     setPasswordVisible(!passwordVisible);
   };
 
+  const onSubmit: SubmitHandler<FieldValues> = (data) => console.log(data);
+
   return (
     <>
-      <div className="border-gray-600 rounded-lg mx-auto flex flex-col gap-8 p-12 w-96 h-fit shadow-2xl">
-        <div onClick={toggleForm}>
-          <ArrowBackIosIcon />
+      <form
+        className="border-gray-600 rounded-lg mx-auto flex flex-col gap-8 p-12 w-96 h-fit shadow-2xl"
+        onSubmit={handleSubmit(onSubmit)}
+      >
+        <div className="flex gap-2 items-center">
+          <div onClick={toggleForm}>
+            <ArrowBackIosIcon />
+          </div>
+          <Typography variant="h4">Sign Up</Typography>
         </div>
-        <Typography variant="h4">Sign Up</Typography>
-        {/* Name */}
+
         <TextField
           autoFocus
-          id="name"
-          name="name"
           label="Name"
-          //   placeholder="Enter your name"
-          //   value={formik.values.name}
-          //   onChange={formik.handleChange}
-          //   onReset={formik.handleReset}
+          placeholder="Enter your name"
           multiline
+          {...register("name", { required: true })}
         />
-        {/* Email */}
+
         <TextField
-          id="email"
-          name="email"
           label="Email"
           placeholder="Enter your email"
-          //   value={formik.values.email}
-          //   onChange={formik.handleChange}
-          //   onReset={formik.handleReset}
           multiline
+          {...register("email", { required: true })}
         />
-        {/* Password */}
+
         <FormControl>
           <InputLabel htmlFor="password">Password</InputLabel>
           <OutlinedInput
             id="password"
-            name="password"
+            {...register("password", { required: true })}
             label="Password"
             type={passwordVisible ? "text" : "password"}
             placeholder="Enter password"
-            // value={formik.values.password}
-            // onChange={formik.handleChange}
-            // onReset={formik.handleReset}
             endAdornment={
               <InputAdornment position="end">
                 <IconButton
@@ -104,18 +91,15 @@ export const Register = (props: Props) => {
             }
           />
         </FormControl>
-        {/* Confirm Password */}
+
         <FormControl>
           <InputLabel htmlFor="confirmPassword">Confirm Password</InputLabel>
           <OutlinedInput
             id="confirmPassword"
-            name="confirmPassword"
+            {...register("confirmPassword", { required: true })}
             label="Confirm Password"
             type={passwordVisible ? "text" : "password"}
             placeholder="Confirm password"
-            // value={formik.values.confirmPassword}
-            // onChange={formik.handleChange}
-            // onReset={formik.handleReset}
             endAdornment={
               <InputAdornment position="end">
                 <IconButton
@@ -133,7 +117,7 @@ export const Register = (props: Props) => {
         <Button>
           <Typography>Register</Typography>
         </Button>
-      </div>
+      </form>
     </>
   );
 };

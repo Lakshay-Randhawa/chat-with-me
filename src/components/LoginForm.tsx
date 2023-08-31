@@ -2,6 +2,7 @@ import { TextField, Typography } from "@mui/material";
 import { HowerButton as Button } from "../HOC/Button";
 import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
 import axios from "axios";
+import { useNavigate } from "react-router";
 
 // import { toast, ToastContainer } from "react-toastify";
 // import "react-toastify/dist/ReactToastify.css";
@@ -12,6 +13,7 @@ type Props = {
 
 export const LoginForm = (props: Props) => {
   const { toggleForm } = props;
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -25,7 +27,10 @@ export const LoginForm = (props: Props) => {
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     const res = await axios.post("http://localhost:5000/auth/signin", data);
-    // console.log(res.data);
+
+    if (res.data) {
+      navigate("/chat");
+    }
   };
   return (
     <form

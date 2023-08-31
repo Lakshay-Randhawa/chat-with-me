@@ -1,6 +1,7 @@
 import { TextField, Typography } from "@mui/material";
 import { HowerButton as Button } from "../HOC/Button";
 import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
+import axios from "axios";
 
 // import { toast, ToastContainer } from "react-toastify";
 // import "react-toastify/dist/ReactToastify.css";
@@ -22,7 +23,10 @@ export const LoginForm = (props: Props) => {
     },
   });
 
-  const onSubmit: SubmitHandler<FieldValues> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+    const res = await axios.post("http://localhost:5000/auth/signin", data);
+    // console.log(res.data);
+  };
   return (
     <form
       className=" border-gray-600 rounded-lg flex flex-col gap-8 p-12 w-96 h-fit shadow-2xl"

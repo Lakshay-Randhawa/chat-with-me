@@ -1,7 +1,7 @@
 import { useState } from "react";
 import HomepageImage from "../assets/homepage.webp";
 import { LoginForm } from "../components/LoginForm";
-import { Register } from "./Register";
+import { RegisterForm } from "../components/RegisterForm";
 
 export const Homepage = () => {
   const [isNewUser, setIsNewUser] = useState(false);
@@ -18,7 +18,7 @@ export const Homepage = () => {
         </div>
         <div className="basis-3/12">
           {isNewUser ? (
-            <Register toggleForm={toggleLoginFormToRegister} />
+            <RegisterForm toggleForm={toggleLoginFormToRegister} />
           ) : (
             <LoginForm toggleForm={toggleLoginFormToRegister} />
           )}

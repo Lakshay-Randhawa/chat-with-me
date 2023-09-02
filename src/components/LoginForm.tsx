@@ -26,10 +26,13 @@ export const LoginForm = (props: Props) => {
   });
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-    const res = await axios.post("http://localhost:5000/auth/signin", data);
-
-    if (res.data) {
-      navigate("/chat");
+    try {
+      const res = await axios.post("http://localhost:5000/auth/signin", data);
+      if (res.data) {
+        navigate("/chat");
+      }
+    } catch (e: any) {
+      console.log(e.response.data.message);
     }
   };
   return (

@@ -10,7 +10,7 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 
-import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
+import { useForm, SubmitHandler, FieldValues, set } from "react-hook-form";
 
 import { IconButton, InputAdornment } from "@mui/material";
 import { HowerButton as Button } from "../HOC/Button";
@@ -24,6 +24,7 @@ export const RegisterForm = (props: Props) => {
   const { toggleForm } = props;
   const {
     register,
+    watch,
     handleSubmit,
     formState: { errors },
   } = useForm({
@@ -36,9 +37,19 @@ export const RegisterForm = (props: Props) => {
   });
 
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const [confirmPasswordMatched, setConfirmPasswordMatched] = useState(false);
+
+  const password = watch("password");
+  const confirmPassword = watch("confirmPassword");
 
   const handlePasswordShow = () => {
     setPasswordVisible(!passwordVisible);
+  };
+
+  const handleConfirmPasswordChange = (e: any) => {
+    const isConfirmed = e.target.value === password;
+
+    setConfirmPasswordMatched(() => (isConfirmed ? true : false));
   };
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
@@ -98,11 +109,13 @@ export const RegisterForm = (props: Props) => {
       <FormControl>
         <InputLabel htmlFor="confirmPassword">Confirm Password</InputLabel>
         <OutlinedInput
+          color={!confirmPasswordMatched ? "warning" : "success"}
           id="confirmPassword"
           {...register("confirmPassword", { required: true })}
           label="Confirm Password"
           type={passwordVisible ? "text" : "password"}
           placeholder="Confirm password"
+          onChange={handleConfirmPasswordChange}
           endAdornment={
             <InputAdornment position="end">
               <IconButton

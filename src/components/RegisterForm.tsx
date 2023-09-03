@@ -36,20 +36,19 @@ export const RegisterForm = (props: Props) => {
     },
   });
 
-  const [passwordVisible, setPasswordVisible] = useState(false);
-  const [confirmPasswordMatched, setConfirmPasswordMatched] = useState(false);
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const [isPasswordConfirmed, setIsPasswordConfirmed] = useState(false);
 
   const password = watch("password");
-  const confirmPassword = watch("confirmPassword");
 
   const handlePasswordShow = () => {
-    setPasswordVisible(!passwordVisible);
+    setIsPasswordVisible(!isPasswordVisible);
   };
 
   const handleConfirmPasswordChange = (e: any) => {
     const isConfirmed = e.target.value === password;
 
-    setConfirmPasswordMatched(() => (isConfirmed ? true : false));
+    setIsPasswordConfirmed(() => (isConfirmed ? true : false));
   };
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
@@ -90,7 +89,7 @@ export const RegisterForm = (props: Props) => {
           id="password"
           {...register("password", { required: true })}
           label="Password"
-          type={passwordVisible ? "text" : "password"}
+          type={isPasswordVisible ? "text" : "password"}
           placeholder="Enter password"
           endAdornment={
             <InputAdornment position="end">
@@ -99,7 +98,7 @@ export const RegisterForm = (props: Props) => {
                 onClick={handlePasswordShow}
                 edge="end"
               >
-                {passwordVisible ? <VisibilityOffIcon /> : <VisibilityIcon />}
+                {isPasswordVisible ? <VisibilityOffIcon /> : <VisibilityIcon />}
               </IconButton>
             </InputAdornment>
           }
@@ -109,11 +108,11 @@ export const RegisterForm = (props: Props) => {
       <FormControl>
         <InputLabel htmlFor="confirmPassword">Confirm Password</InputLabel>
         <OutlinedInput
-          color={!confirmPasswordMatched ? "warning" : "success"}
+          color={isPasswordConfirmed ? "success" : "warning"}
           id="confirmPassword"
           {...register("confirmPassword", { required: true })}
           label="Confirm Password"
-          type={passwordVisible ? "text" : "password"}
+          type={isPasswordVisible ? "text" : "password"}
           placeholder="Confirm password"
           onChange={handleConfirmPasswordChange}
           endAdornment={
@@ -123,7 +122,7 @@ export const RegisterForm = (props: Props) => {
                 onClick={handlePasswordShow}
                 edge="end"
               >
-                {passwordVisible ? <VisibilityOffIcon /> : <VisibilityIcon />}
+                {isPasswordVisible ? <VisibilityOffIcon /> : <VisibilityIcon />}
               </IconButton>
             </InputAdornment>
           }

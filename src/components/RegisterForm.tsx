@@ -10,7 +10,7 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 
-import { useForm, SubmitHandler, FieldValues, set } from "react-hook-form";
+import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
 
 import { IconButton, InputAdornment } from "@mui/material";
 import { HowerButton as Button } from "../HOC/Button";
@@ -22,12 +22,7 @@ type Props = {
 
 export const RegisterForm = (props: Props) => {
   const { toggleForm } = props;
-  const {
-    register,
-    watch,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
+  const { register, watch, handleSubmit } = useForm({
     defaultValues: {
       name: "",
       email: "",

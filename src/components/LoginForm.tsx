@@ -14,11 +14,7 @@ type Props = {
 export const LoginForm = (props: Props) => {
   const { toggleForm } = props;
   const navigate = useNavigate();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
+  const { register, handleSubmit } = useForm({
     defaultValues: {
       email: "",
       password: "",

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 export const Navbar = () => {
   return (
-    <AppBar className="top-0" position="fixed">
+    <AppBar position="static">
       <Toolbar className="flex">
         <div className="flex gap-3">
           <Typography variant="h5">Let's Chat</Typography>

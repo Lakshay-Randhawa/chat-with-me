@@ -48,7 +48,6 @@ export const RegisterForm = (props: Props) => {
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     const res = await axios.post("http://localhost:5000/auth/signup", data);
-    console.log(res);
   };
 
   return (

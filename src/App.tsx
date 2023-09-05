@@ -8,13 +8,11 @@ export const App = () => {
   return (
     <StyledEngineProvider injectFirst>
       <BrowserRouter>
-        <div>
-          <Navbar />
-          <Routes>
-            <Route path="/" element={<Homepage />} />
-            <Route path="/chat" element={<Chat />} />
-          </Routes>
-        </div>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Homepage />} />
+          <Route path="/chat" element={<Chat />} />
+        </Routes>
       </BrowserRouter>
     </StyledEngineProvider>
   );

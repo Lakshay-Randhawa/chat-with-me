@@ -17,6 +17,8 @@ export const UserSearchBar = () => {
 
   const users = useAllUsers();
 
+  console.log(users);
+
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newSearchTerm = event.target.value;
     setSearchTerm(newSearchTerm);

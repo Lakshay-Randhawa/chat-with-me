@@ -1,16 +1,27 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
-import { useUserStore } from "../store/useUserStore";
+import axios, { AxiosResponse } from "axios";
+
+interface User {
+  id: number;
+  name: string;
+  // Add more user properties here if needed
+}
 
 export const useAllUsers = () => {
-  const userStore = useUserStore() as any;
-
-  const getAllUsers = async () => {
-    const users = await axios.get("http://localhost:5000/users/all");
-    userStore.setUser(users.data);
-  };
+  const [users, setUsers] = useState<User[]>([]);
 
   useEffect(() => {
-    getAllUsers();
+    const fetchData = async () => {
+      try {
+        const response: AxiosResponse<User[]> = await axios.get(
+          "http://localhost:5000/users/all"
+        );
+        setUsers(response.data);
+      } catch (err: any) {}
+    };
+
+    fetchData();
   }, []);
+
+  return users;
 };

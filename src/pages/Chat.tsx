@@ -1,6 +1,9 @@
 import { UserSearchBar } from "../components/UserSearchBar";
+import { useFetchAllUsers } from "../hooks/useFetchAllUsers";
 
 export const Chat = () => {
+  useFetchAllUsers();
+
   return (
     <div className="flex h-screen p-5">
       <div className="border-r-4 border-black basis-1/5">

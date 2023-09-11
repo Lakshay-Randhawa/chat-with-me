@@ -2,35 +2,31 @@ import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import { Search } from "@mui/icons-material";
-import { useAllUsers } from "../hooks/useAllUsers";
 import { useUserStore } from "../store/useUserStore";
 
 type User = {
   id: number;
   name: string;
-  email: string;
+  // If email is made required, then there is some error while setting searchResults. FIX THIS!
+  email?: string;
 };
 
 export const UserSearchBar = () => {
-  const [searchTerm, setSearchTerm] = useState<string>("");
   const [searchResults, setSearchResults] = useState<User[]>([]);
 
-  const users = useAllUsers();
-
-  console.log(users);
+  const { users } = useUserStore();
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newSearchTerm = event.target.value;
-    setSearchTerm(newSearchTerm);
+    const searchTerm = event.target.value;
 
-    // const foundUsers = mockSearchUsers(newSearchTerm);
-    // setSearchResults(foundUsers);
+    const foundUsers = searchUsers(searchTerm);
+    setSearchResults(foundUsers);
   };
 
-  const mockSearchUsers = (term: string) => {
-    // return users.filter((user) =>
-    //   user.name.toLowerCase().includes(term.toLowerCase())
-    // );
+  const searchUsers = (term: string) => {
+    return users.filter((user) =>
+      user.name.toLowerCase().includes(term.toLowerCase())
+    );
   };
 
   return (

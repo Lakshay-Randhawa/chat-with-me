@@ -1,12 +1,19 @@
 import { create } from "zustand";
 
 type User = {
-  id: string;
+  id: number;
   name: string;
-  email: string;
+  // Add more user properties here if needed
 };
 
-export const useUserStore = create((set) => ({
-  users: [] as User[],
-  addUsers: (users: any) => set({ users }),
+type UserStore = {
+  users: User[];
+  setAllUsers: (newUsers: User[]) => void;
+  deleteAllUsers: () => void;
+};
+
+export const useUserStore = create<UserStore>((set) => ({
+  users: [],
+  setAllUsers: (newUsers) => set({ users: newUsers }),
+  deleteAllUsers: () => set({ users: [] }),
 }));

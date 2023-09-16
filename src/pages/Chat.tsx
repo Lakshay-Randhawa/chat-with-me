@@ -6,7 +6,7 @@ export const Chat = () => {
   useFetchAllUsers();
 
   return (
-    <div className="flex h-screen p-5">
+    <div className="flex h-full p-5">
       <div className="border-r-4 border-black basis-1/5">
         <UserSearchBar />
       </div>

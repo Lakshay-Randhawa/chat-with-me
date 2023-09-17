@@ -1,6 +1,7 @@
 import { IconButton, TextField } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import { Message } from "./Message";
 
 type MessageRef = {
   current: {
@@ -8,17 +9,41 @@ type MessageRef = {
   };
 };
 
+type Message = {
+  message: string;
+  isSenderMessage: boolean;
+};
+
 export const ChatWIindow = () => {
+  const [messages, setMessages] = useState<Message[]>([]);
   const messageRef: MessageRef = useRef({});
 
   const handleSendMessage = () => {
-    console.log(messageRef.current.value);
+    const message = messageRef.current.value;
+
+    if (message) {
+      const newMessage: Message = {
+        message,
+        isSenderMessage: true,
+      };
+
+      setMessages((prevMessages) => [...prevMessages, newMessage]);
+      messageRef.current.value = "";
+    }
   };
 
   return (
     <div className="border-black border-2 h-full flex flex-col">
-      <div className=" basis-1/12">Chat Info</div>
-      <div className="bg-blue-300 basis-10/12">Messages</div>
+      <div className="bg-red-200 basis-1/12">Chat Info</div>
+      <div className="flex flex-col basis-10/12">
+        {messages.map((message, index) => (
+          <Message
+            key={index}
+            message={message.message}
+            isSenderMessage={message.isSenderMessage}
+          />
+        ))}
+      </div>
       <div className=" basis-1/12 bg-green-300 p-1 ">
         <TextField
           className=" bg-white rounded-xl "

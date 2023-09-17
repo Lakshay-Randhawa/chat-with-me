@@ -17,7 +17,7 @@ export const ChatWIindow = () => {
 
   return (
     <div className="border-black border-2 h-full flex flex-col">
-      <div className="bg-red-400 basis-1/12">Chat Info</div>
+      <div className=" basis-1/12">Chat Info</div>
       <div className="bg-blue-300 basis-10/12">Messages</div>
       <div className=" basis-1/12 bg-green-300 p-1 ">
         <TextField

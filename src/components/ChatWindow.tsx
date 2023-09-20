@@ -32,6 +32,10 @@ export const ChatWIindow = () => {
     }
   };
 
+  const handleClick = (event: any) => {
+    if (event.key === "Enter") handleSendMessage();
+  };
+
   return (
     <div className="border-black border-2 h-full flex flex-col">
       <div className="bg-red-200 basis-1/12">Chat Info</div>
@@ -48,6 +52,7 @@ export const ChatWIindow = () => {
         <TextField
           className=" bg-white rounded-xl "
           id="message"
+          onKeyDown={handleClick}
           fullWidth
           inputRef={messageRef}
           placeholder="Enter you message here"

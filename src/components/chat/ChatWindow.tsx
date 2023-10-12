@@ -14,7 +14,13 @@ type Message = {
   isSenderMessage: boolean;
 };
 
-export const ChatWIindow = () => {
+type Props = {
+  selectUser: string;
+};
+
+export const ChatWIindow = (props: Props) => {
+  const { selectUser } = props;
+
   const [messages, setMessages] = useState<Message[]>([]);
   const messageRef: MessageRef = useRef({});
 
@@ -38,7 +44,7 @@ export const ChatWIindow = () => {
 
   return (
     <div className="border-black border-2 h-full flex flex-col">
-      <div className="bg-red-200 basis-1/12">Chat Info</div>
+      <div className="bg-red-200 basis-1/12">{selectUser}</div>
       <div className="flex flex-col basis-10/12">
         {messages.map((message, index) => (
           <Message

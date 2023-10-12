@@ -7,7 +7,12 @@ import { User } from "types/User";
 
 export const Chat = () => {
   const [isChatOpen, setIsChatOpen] = useState(false);
-  const [selectedUser, setSelectedUser] = useState<User | null>(null);
+  const [selectedUser, setSelectedUser] = useState<string | null>(null);
+
+  const handleSelectUser = (user: string) => {
+    setIsChatOpen(true);
+    setSelectedUser(user);
+  };
 
   useFetchAllUsers();
   const RecentChats = ["user1", "user2", "user3", "user4", "user5"];
@@ -17,12 +22,20 @@ export const Chat = () => {
         <UserSearchBar />
         <div className="flex flex-col gap-3 p-6">
           {RecentChats.map((user, index) => (
-            <PreviousChatTab key={index} name={user} />
+            <PreviousChatTab
+              handleSelectUser={handleSelectUser}
+              key={index}
+              name={user}
+            />
           ))}
         </div>
       </div>
       <div className=" basis-4/5 p-4">
-        {isChatOpen ? <ChatWIindow /> : <div>Click on a user to chat</div>}
+        {isChatOpen && selectedUser ? (
+          <ChatWIindow selectUser={selectedUser} />
+        ) : (
+          <div>Click on a user to chat</div>
+        )}
       </div>
     </div>
   );

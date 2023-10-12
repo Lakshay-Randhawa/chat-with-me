@@ -1,5 +1,6 @@
-import { ChatWIindow } from "../components/ChatWindow";
-import { UserSearchBar } from "../components/UserSearchBar";
+import { ChatWIindow } from "../components/chat/ChatWindow";
+import { PreviousChatTab } from "../components/chat/PreviousChatTab";
+import { UserSearchBar } from "../components/chat/UserSearchBar";
 import { useFetchAllUsers } from "../hooks/useFetchAllUsers";
 
 export const Chat = () => {
@@ -10,11 +11,12 @@ export const Chat = () => {
     <div className="flex h-full p-5">
       <div className="border-r-4 border-black basis-1/5">
         <UserSearchBar />
-        <div className="">
+        <div className="flex flex-col gap-3 p-6">
           {RecentChats.map((user, index) => (
-            <div key={index} className=" flex  justify-center ">
-              {user}
-            </div>
+            // <div key={index} className=" flex  justify-center ">
+            //   {user}
+            // </div>
+            <PreviousChatTab key={index} name={user} />
           ))}
         </div>
       </div>

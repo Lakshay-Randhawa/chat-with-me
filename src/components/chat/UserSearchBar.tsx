@@ -3,13 +3,7 @@ import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import { Search } from "@mui/icons-material";
 import { useUserStore } from "../../store/useUserStore";
-
-type User = {
-  id: number;
-  name: string;
-  // If email is made required, then there is some error while setting searchResults. FIX THIS!
-  email?: string;
-};
+import { User } from "types/User";
 
 export const UserSearchBar = () => {
   const [searchResults, setSearchResults] = useState<User[]>([]);

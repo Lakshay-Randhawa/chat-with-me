@@ -1,10 +1,5 @@
 import { create } from "zustand";
-
-type User = {
-  id: number;
-  name: string;
-  // Add more user properties here if needed
-};
+import { User } from "types/User";
 
 type UserStore = {
   users: User[];

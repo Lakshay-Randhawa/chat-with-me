@@ -6,6 +6,7 @@ type Props = {
   profilePic?: string;
   handleSelectUser: (user: string) => void;
 };
+
 export const PreviousChatTab = (props: Props) => {
   const { name, handleSelectUser } = props;
 

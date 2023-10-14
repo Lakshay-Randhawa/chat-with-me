@@ -2,13 +2,17 @@ import { create } from "zustand";
 import { User } from "types/User";
 
 type UserStore = {
-  users: User[];
+  allUsers: User[];
+  currentUser: User | null;
+  setCurrentUser: (newUser: User) => void;
   setAllUsers: (newUsers: User[]) => void;
   deleteAllUsers: () => void;
 };
 
 export const useUserStore = create<UserStore>((set) => ({
-  users: [],
-  setAllUsers: (newUsers) => set({ users: newUsers }),
-  deleteAllUsers: () => set({ users: [] }),
+  allUsers: [],
+  currentUser: null,
+  setCurrentUser: (newUser) => set({ currentUser: newUser }),
+  setAllUsers: (newUsers) => set({ allUsers: newUsers }),
+  deleteAllUsers: () => set({ allUsers: [] }),
 }));

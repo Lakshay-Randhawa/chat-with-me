@@ -8,7 +8,7 @@ import { User } from "types/User";
 export const UserSearchBar = () => {
   const [searchResults, setSearchResults] = useState<User[]>([]);
 
-  const { users } = useUserStore();
+  const { allUsers } = useUserStore();
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const searchTerm = event.target.value;
@@ -18,7 +18,7 @@ export const UserSearchBar = () => {
   };
 
   const searchUsers = (term: string) => {
-    return users.filter((user) =>
+    return allUsers.filter((user) =>
       user.name.toLowerCase().includes(term.toLowerCase())
     );
   };

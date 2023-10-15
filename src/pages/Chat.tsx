@@ -3,7 +3,6 @@ import { ChatWIindow } from "../components/chat/ChatWindow";
 import { PreviousChatTab } from "../components/chat/PreviousChatTab";
 import { UserSearchBar } from "../components/chat/UserSearchBar";
 import { useFetchAllUsers } from "../hooks/useFetchAllUsers";
-import { User } from "types/User";
 
 export const Chat = () => {
   const [isChatOpen, setIsChatOpen] = useState(false);

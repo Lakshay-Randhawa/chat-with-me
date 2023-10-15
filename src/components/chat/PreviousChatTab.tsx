@@ -1,5 +1,4 @@
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import { User } from "types/User";
 
 type Props = {
   name: string;

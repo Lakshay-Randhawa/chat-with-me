@@ -12,7 +12,7 @@ type UserStore = {
 export const useUserStore = create<UserStore>((set) => ({
   allUsers: [],
   currentUser: null,
-  setCurrentUser: (newUser) => set({ currentUser: newUser }),
+  setCurrentUser: (newUser: User) => set({ currentUser: newUser }),
   setAllUsers: (newUsers) => set({ allUsers: newUsers }),
   deleteAllUsers: () => set({ allUsers: [] }),
 }));

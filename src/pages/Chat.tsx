@@ -14,7 +14,7 @@ export const Chat = () => {
   };
 
   useFetchAllUsers();
-  const RecentChats = ["user1", "user2", "user3", "user4", "user5"];
+  const RecentChats = ["user 1", "user 2", "user 3", "user 4", "user 5"];
   return (
     <div className="flex h-full p-5">
       <div className="border-r-4 border-black basis-1/5">

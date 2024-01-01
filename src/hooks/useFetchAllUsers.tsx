@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import axios from "axios";
-import { useUserStore } from "../store/useUserStore";
+import { useUserStore } from "../store/userStore";
 
 export const useFetchAllUsers = () => {
   const userStore = useUserStore();

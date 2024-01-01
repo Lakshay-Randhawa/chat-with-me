@@ -2,6 +2,7 @@ import { TextField, Typography } from "@mui/material";
 import { HowerButton as Button } from "../HOC/Button";
 import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
 import axios from "axios";
+import { useUserStore } from "../store/userStore";
 
 // import { toast, ToastContainer } from "react-toastify";
 // import "react-toastify/dist/ReactToastify.css";
@@ -12,6 +13,7 @@ type Props = {
 
 export const LoginForm = (props: Props) => {
   const { toggleForm } = props;
+  const { setCurrentUser } = useUserStore();
 
   const { register, handleSubmit } = useForm({
     defaultValues: {
@@ -24,8 +26,11 @@ export const LoginForm = (props: Props) => {
     try {
       const res = await axios.post("http://localhost:5000/auth/signin", data);
       if (res.data) {
-        console.log(res.data);
-        // navigate("/chat");
+        const { access_token } = res.data;
+
+        const user = { email: data.email, token: access_token };
+
+        setCurrentUser(user);
       }
     } catch (e: any) {
       console.log(e.response.data.message);
@@ -64,7 +69,7 @@ export const LoginForm = (props: Props) => {
       <Button>
         <Typography>Login</Typography>
       </Button>
-      <div className="flex">
+      <div className="flex gap-2">
         <Typography>Don't have an account? </Typography>
         <Typography className="hover:text-blue-600 hover:underline cursor-pointer">
           <a onClick={toggleForm}>Sign Up</a>

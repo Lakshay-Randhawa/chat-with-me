@@ -6,12 +6,10 @@ export const Navbar = () => {
   return (
     <AppBar position="static">
       <Toolbar className="flex">
-        <div className="flex gap-3">
+        <Link className="flex gap-3" to="/">
           <Typography variant="h5">Let's Chat</Typography>
-          <Link to="/">
-            <QuestionAnswerIcon fontSize="large" />
-          </Link>
-        </div>
+          <QuestionAnswerIcon fontSize="large" />
+        </Link>
       </Toolbar>
     </AppBar>
   );

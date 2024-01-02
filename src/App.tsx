@@ -1,10 +1,12 @@
 import { StyledEngineProvider } from "@mui/material/styles";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Homepage } from "./pages/Homepage";
+import { BrowserRouter } from "react-router-dom";
 import { Navbar } from "./components/Navbar";
+import { useUserStore } from "./store/userStore";
 import { Chat } from "./pages/Chat";
+import { Homepage } from "./pages/Homepage";
 
 export const App = () => {
+  const user = useUserStore((state) => state.currentUser);
   return (
     <StyledEngineProvider injectFirst>
       <BrowserRouter>
@@ -12,12 +14,7 @@ export const App = () => {
           <div className="basis-1/12">
             <Navbar />
           </div>
-          <div className="basis-11/12">
-            <Routes>
-              <Route path="/" element={<Homepage />} />
-              <Route path="/chat" element={<Chat />} />
-            </Routes>
-          </div>
+          <div className="basis-11/12">{user ? <Chat /> : <Homepage />}</div>
         </div>
       </BrowserRouter>
     </StyledEngineProvider>
@@ -25,3 +22,10 @@ export const App = () => {
 };
 
 export default App;
+
+{
+  /* <Routes>
+  <Route path="/" element={<Homepage />} />
+  <Route path="/chat" element={<Chat />} />
+</Routes> */
+}

@@ -22,10 +22,3 @@ export const App = () => {
 };
 
 export default App;
-
-{
-  /* <Routes>
-  <Route path="/" element={<Homepage />} />
-  <Route path="/chat" element={<Chat />} />
-</Routes> */
-}

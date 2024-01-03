@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { persist, createJSONStorage } from "zustand/middleware";
 import { User } from "types/User";
 
 type UserStore = {
@@ -9,10 +10,22 @@ type UserStore = {
   deleteAllUsers: () => void;
 };
 
-export const useUserStore = create<UserStore>((set) => ({
-  allUsers: [],
-  currentUser: null,
-  setCurrentUser: (newUser: User | null) => set({ currentUser: newUser }),
-  setAllUsers: (newUsers) => set({ allUsers: newUsers }),
-  deleteAllUsers: () => set({ allUsers: [] }),
-}));
+export const useUserStore = create<UserStore>()(
+  persist(
+    (set) => ({
+      allUsers: [],
+      currentUser: null,
+      setCurrentUser: (newUser: User | null) => set({ currentUser: newUser }),
+      setAllUsers: (newUsers) => set({ allUsers: newUsers }),
+      deleteAllUsers: () => set({ allUsers: [] }),
+    }),
+    {
+      name: "user-storage", // name of item in the storage (must be unique)
+      storage: createJSONStorage(() => sessionStorage), // (optional) by default the 'localStorage' is used
+      partialize: (state) => ({
+        currentUser: state.currentUser,
+        allUsers: state.allUsers,
+      }), // (optional) only persist a part of the store
+    }
+  )
+);

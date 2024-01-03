@@ -1,7 +1,7 @@
 import { useState } from "react";
 import HomepageImage from "../assets/homepage.webp";
-import { LoginForm } from "../components/LoginForm";
-import { RegisterForm } from "../components/RegisterForm";
+import { LoginForm } from "./LoginForm";
+import { RegisterForm } from "./RegisterForm";
 
 export const Homepage = () => {
   const [isNewUser, setIsNewUser] = useState(false);

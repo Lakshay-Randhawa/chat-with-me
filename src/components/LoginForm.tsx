@@ -78,3 +78,15 @@ export const LoginForm = (props: Props) => {
     </form>
   );
 };
+
+// allMessage = [
+//   {
+//     user: string,
+//     chats: Chat[]
+//   }
+// ]
+
+// chat = {
+//   Sender: User,
+//   messages: Message[]
+// }

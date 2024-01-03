@@ -2,8 +2,8 @@ import { StyledEngineProvider } from "@mui/material/styles";
 import { BrowserRouter } from "react-router-dom";
 import { Navbar } from "./components/Navbar";
 import { useUserStore } from "./store/userStore";
-import { Chat } from "./pages/Chat";
-import { Homepage } from "./pages/Homepage";
+import { Chat } from "./components/chat/Chat";
+import { Homepage } from "./components/Homepage";
 
 export const App = () => {
   const user = useUserStore((state) => state.currentUser);

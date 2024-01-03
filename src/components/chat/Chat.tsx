@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { ChatWIindow } from "../components/chat/ChatWindow";
-import { PreviousChatTab } from "../components/chat/PreviousChatTab";
-import { UserSearchBar } from "../components/chat/UserSearchBar";
-import { useFetchAllUsers } from "../hooks/useFetchAllUsers";
+import { ChatWIindow } from "./ChatWindow";
+import { PreviousChatTab } from "./PreviousChatTab";
+import { UserSearchBar } from "./UserSearchBar";
+import { useFetchAllUsers } from "../../hooks/useFetchAllUsers";
 
 export const Chat = () => {
   const [isChatOpen, setIsChatOpen] = useState(false);

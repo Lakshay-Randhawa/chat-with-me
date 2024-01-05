@@ -24,7 +24,6 @@ export const useUserStore = create<UserStore>()(
       storage: createJSONStorage(() => sessionStorage), // (optional) by default the 'localStorage' is used
       partialize: (state) => ({
         currentUser: state.currentUser,
-        allUsers: state.allUsers,
       }), // (optional) only persist a part of the store
     }
   )

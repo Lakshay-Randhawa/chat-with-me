@@ -7,7 +7,6 @@ import { useFetchAllUsers } from "../../hooks/useFetchAllUsers";
 export const Chat = () => {
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState<string | null>(null);
-
   const handleSelectUser = (user: string) => {
     setIsChatOpen(true);
     setSelectedUser(user);

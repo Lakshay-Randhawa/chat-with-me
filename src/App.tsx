@@ -4,6 +4,7 @@ import { Navbar } from "./components/Navbar";
 import { useUserStore } from "./store/userStore";
 import { Chat } from "./components/chat/Chat";
 import { Homepage } from "./components/Homepage";
+import "react-toastify/dist/ReactToastify.css";
 
 export const App = () => {
   const user = useUserStore((state) => state.currentUser);
